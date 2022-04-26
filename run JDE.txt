@@ -1,0 +1,60 @@
+conda activate openmmlab
+
+1. generate labels and imgs for visdrone
+part train dataset:
+python generate_labels_for_VisDrone.py --if_certain_seqs
+
+python generate_labels_for_VisDronev2.py
+
+
+full train dataset:
+python generate_labels_for_VisDronev2.py
+
+full test dataset:
+python generate_labels_for_VisDronev2.py --split 'VisDrone2019-MOT-test-dev'
+
+
+2. choose anchor sizes
+python choose_anchors.py --if_certain_seqs True --if_norm True
+
+3. train visdrone:
+CUDA_VISIBLE_DEVICES=4 python train.py
+
+resume train:
+CUDA_VISIBLE_DEVICES=1,4 python train.py --resume
+
+train with siwn backbone
+CUDA_VISIBLE_DEVICES=4 python train.py --backbone 'swin' --cfg 'cfg/yolov3_1088x608_newanchor3-swin.cfg'
+
+CUDA_VISIBLE_DEVICES=2,3 python train.py --backbone 'swin' --cfg 'cfg/yolov3_1088x608_newanchor3-fullswin.cfg'
+
+
+4. eval_only
+python train.py --eval_only
+
+5. track and eval mot metrics
+python track.py --cfg 'cfg/yolov3_1088x608_newanchor5.cfg' --weights 'weights/vis_35epochs_anchor5_lr3e-4/latest.pt' --test_visdrone --save-images
+
+use byte track
+python track.py --cfg 'cfg/yolov3_1088x608_newanchor3.cfg' --weights 'weights/vis_50epochs_anchor3_lr3e-4/weights_epoch_30.pt' --test_visdrone --byte_track --save-images
+python track.py --cfg 'cfg/yolov3_1088x608_newanchor3-fullswin.cfg' --weights 'weights/vis_40Epochs_anchor3_lr3e-4_swin_wd1e-2/best_mAP.pt' --test_visdrone --byte_track --save-images
+
+
+6. debug 
+python train.py --backbone 'swin' --batch-size 1 --cfg 'cfg/yolov3_1088x608_newanchor5-swin.cfg'
+python train.py --backbone 'swin' --batch-size 1 --cfg 'cfg/yolov3_1088x608_newanchor3-fullswin.cfg'
+
+
+train dataset size:
+{'uav0000143_02250_v': (2688, 1512), 'uav0000264_02760_v': (1904, 1071), 'uav0000124_00944_v': (2688, 1512), 'uav0000326_01035_v': (1904, 1071), 'uav0000218_00001_v': (2688, 1512), 'uav0000361_02323_v': (1904, 1071), 'uav0000222_03150_v': (2688, 1512), 'uav0000239_03720_v': (1344, 756), 'uav0000363_00001_v': (1344, 756), 'uav0000076_00720_v': (1904, 1071), 'uav0000266_03598_v': (2688, 1512), 'uav0000244_01440_v': (1920, 1080), 'uav0000145_00000_v': (2688, 1512), 'uav0000270_00001_v': (1904, 1071), 'uav0000295_02300_v': (2720, 1530), 'uav0000357_00920_v': (1904, 1071), 'uav0000239_12336_v': (1344, 756), 'uav0000307_00000_v': (1904, 1071), 'uav0000126_00001_v': (2688, 1512), 'uav0000329_04715_v': (1904, 1071), 'uav0000323_01173_v': (1904, 1071), 'uav0000140_01590_v': (2688, 1512), 'uav0000309_00000_v': (1904, 1071), 'uav0000243_00001_v': (1344, 756), 'uav0000138_00000_v': (2688, 1512), 'uav0000308_01380_v': (1904, 1071), 'uav0000248_00001_v': (1344, 756), 'uav0000360_00001_v': (1904, 1071), 'uav0000278_00001_v': (1360, 765), 'uav0000342_04692_v': (1904, 1071), 'uav0000289_06922_v': (1904, 1071), 'uav0000289_00001_v': (1904, 1071), 'uav0000315_00000_v': (1904, 1071), 'uav0000316_01288_v': (2720, 1530), 'uav0000279_00001_v': (1904, 1071), 'uav0000281_00460_v': (1904, 1071), 'uav0000266_04830_v': (2688, 1512), 'uav0000352_05980_v': (1904, 1071), 'uav0000300_00000_v': (1904, 1071), 'uav0000263_03289_v': (1904, 1071), 'uav0000366_00001_v': (1904, 1071), 'uav0000150_02310_v': (2688, 1512), 'uav0000288_00001_v': (1904, 1071), 'uav0000273_00001_v': (1904, 1071), 'uav0000308_00000_v': (1904, 1071)}
+
+
+test dataset size:
+{'uav0000120_04775_v': (1360, 765), 'uav0000370_00001_v': (2720, 1530), 'uav0000249_00001_v': (1920, 1080), 'uav0000297_02761_v': (1904, 1071), 'uav0000188_00000_v': (960, 540), 'uav0000249_02688_v': (1344, 756), 'uav0000355_00001_v': (1360, 765), 'uav0000119_02301_v': (1360, 765), 'uav0000306_00230_v': (680, 382), 'uav0000161_00000_v': (960, 540), 'uav0000297_00000_v': (1904, 1071), 'uav0000009_03358_v': (1360, 765), 'uav0000077_00720_v': (1360, 765), 'uav0000201_00000_v': (1344, 756)}
+
+
+
+
+
+
+

@@ -1,0 +1,15 @@
+{
+    "root":"/data/wujiapeng/datasets",
+    "train":
+    {
+        "visdrone":"./data/visdrone.train"
+    },
+    "test_emb":
+    {
+        "visdrone":"./data/visdrone.val"
+    },
+    "test":
+    {
+       "visdrone":"./data/visdrone.val"
+    }
+}
