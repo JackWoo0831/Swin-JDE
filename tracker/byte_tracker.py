@@ -170,7 +170,7 @@ class BYTETracker(object):
         self.frame_id = 0
         self.det_thresh = opt.conf_thres
         self.init_thresh = self.det_thresh + 0.2
-        self.low_thresh = 0.05
+        self.low_thresh = 0.2
         self.buffer_size = int(frame_rate / 30.0 * opt.track_buffer)
         self.max_time_lost = self.buffer_size
 
