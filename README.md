@@ -11,10 +11,10 @@ The structure of this model is as follow:
 Result on VisDrone2019-MOT test:
 (*Used ByteTrack, high thresh=0.6, low thresh=0.2*)
 
-||IDF1|Recall|Precision|FP|FN|MOTA|MOTP
-|--|--|--|--|--|--|--|--|
-JDE(with DarkNet53 backbone)|45.0| 48.7 |**91.4**|**5777** | 64672|42.4|0.235
-JDE(with Swin-T backbone)|**48.2**| **54.6** | 88.7 | 8784| **57202**|**45.9**|**0.249**
+||IDF1|Recall|Precision|FP|FN|MOTA|MOTP|FPS
+|--|--|--|--|--|--|--|--|--|
+JDE(with DarkNet53 backbone)|45.0| 48.7 |**91.4**|**5777** | 64672|42.4|0.235|17.84
+JDE(with Swin-T backbone)|**48.2**| **54.6** | 88.7 | 8784| **57202**|**45.9**|**0.249**|**23.55**
 
 ***Training details:***
 JDE with Swin-T backbone is trained with:
