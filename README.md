@@ -76,7 +76,11 @@ python generate_labels_for_VisDronev2.py --split 'VisDrone2019-MOT-test-dev'
 ```
 
 
-**Then train**
+**Then train**  
+> if you want to use the Swin-T pretrained model, please download the model in [Swin Transformer](https://github.com/SwinTransformer/Swin-Transformer-Object-Detection)  
+> (choose the Swin-T for Mask RCNN) and **rename it as 'swin_t.pth', and put it in 'weights/'.**  
+
+
 train with swin backbone:
 ```python
 python train.py --backbone 'swin' --cfg 'cfg/yolov3_1088x608_newanchor3-fullswin.cfg'
