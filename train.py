@@ -100,9 +100,13 @@ def train(
     else:
         # Initialize model with backbone (optional)
         # if cfg.endswith('yolov3.cfg'):
-        if 'fullswin' in cfg:  # 是完整swin-T的模型
-            print("loading swin weights....")
+        if 'swin_t' in cfg:  # 是完整swin-T的模型
+            print("loading swin_t weights....")
             load_swin_weights(model, osp.join(weights_from, 'swin_t.pth'))
+            print("Done!")
+        elif 'swin_s' in cfg:
+            print("loading swin_s weights....")
+            load_swin_weights(model, osp.join(weights_from, 'swin_s.pth'))
             print("Done!")
         elif 'yolov3' in cfg and 'swin' not in cfg:  # 是DarkNet模型
             print("loading darknet weights....")
