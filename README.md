@@ -1,5 +1,5 @@
 ***What's new:***  
-add JDE with Swin-S
+add JDE with Swin-S  
 update cfg files and train.py  
 
 ****
