@@ -21,6 +21,7 @@ Result on VisDrone2019-MOT test:
 JDE(with DarkNet53 backbone)|45.0| 48.7 |**91.4**|**5777** | 64672|42.4|0.235|17.84
 JDE(with Swin-T backbone)|48.2| 54.6 | 88.7 | 8784| 57202|**45.9**|0.249|**23.55**  
 JDE(with Swin-S backbone)|**49.5**| **56.6** | 85.5 | 12094 | **54779** | 45.1 | **0.263** | 15.78   
+JDE(with Swin-B backbone)|47.2 | 53.9 | 87.6 | 9589 | 58191 | 44.3 | 0.247 | 15.87  
 
 ***Training details:***
 JDE with Swin-T backbone is trained with:
@@ -32,7 +33,7 @@ JDE with Swin-T backbone is trained with:
  - 40Epochs, test with the best mAP model during training(which is 33rd epoch), lr x 0.1 at 31st epoch and 37th epoch(follow Swin Transformer paper)
  - 2 Tesla A100 GPUs, about 5 hours
  
- JDE with DarkNet is similar. JDE with Swin-S is similar too, but due to GPU memory, the batch size is 24.  
+ JDE with DarkNet is similar. JDE with Swin-S is similar too, but due to GPU memory, the batch size is 24.  And the batch size of JDE with Swin-B is 16.  
 
 ***Trained model***:  
 Baidu Link(JDE with Swin-T): [link](https://pan.baidu.com/s/1iU9GNoc1IDG_4PFl7kXWiQ)  
