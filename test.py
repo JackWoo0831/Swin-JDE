@@ -37,7 +37,7 @@ def test(
 
     # Initialize model
     if opt.backbone == 'swin':
-        model = Swin_JDE(cfg_dict, test_emb=False)
+        model = Swin_JDE(cfg, test_emb=False)
     else:
         model = Darknet(cfg_dict, test_emb=False)
 

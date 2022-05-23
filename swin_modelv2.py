@@ -345,6 +345,7 @@ class Swin_JDE(nn.Module):
 
     def __init__(self, cfg_dict, nID=0, test_emb=False):
         super(Swin_JDE, self).__init__()
+        cfg = cfg_dict
         if isinstance(cfg_dict, str):
             cfg_dict = parse_model_cfg(cfg_dict)
         self.module_defs = cfg_dict
@@ -360,7 +361,12 @@ class Swin_JDE(nn.Module):
 
         self.classifier = nn.Linear(self.emb_dim, nID) if nID > 0 else None
 
-        self.num_features = [96, 96, 96, 192, 192, 384, 384, 768, 768]  # 用于Swin-t的block 输出reshape
+        if 'swin_b' in cfg:
+            # 用于Swin-b的block 输出reshape
+            self.num_features = [128, 128, 128, 256, 256, 512, 512, 1024, 1024]
+        else:
+            self.num_features = [96, 96, 96, 192, 192, 384, 384, 768, 768]  # 用于Swin-t, Swin-s的block 输出reshape
+
 
     def forward(self, x, targets=None, targets_len=None):
         # print(x.shape)
@@ -543,7 +549,7 @@ def load_swin_weights(self, weights):
     weights: pth file
     """
     # 基本遵循加载DarkNet预训练权重的形式
-    check_point = torch.load('weights/swin_t.pth', map_location='cpu')  # 加载模型
+    check_point = torch.load(weights, map_location='cpu')  # 加载模型
     check_point_state_dict = check_point['state_dict']  # 加载权重
 
     # resume_state_dict = {}  # 存储要加载的权重

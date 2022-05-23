@@ -108,6 +108,10 @@ def train(
             print("loading swin_s weights....")
             load_swin_weights(model, osp.join(weights_from, 'swin_s.pth'))
             print("Done!")
+        elif 'swin_b' in cfg:
+            print("loading swin_b weights....")
+            load_swin_weights(model, osp.join(weights_from, 'swin_b.pth'))
+            print("Done!")
         elif 'yolov3' in cfg and 'swin' not in cfg:  # 是DarkNet模型
             print("loading darknet weights....")
             load_darknet_weights(model, osp.join(weights_from, 'darknet53.conv.74'))
