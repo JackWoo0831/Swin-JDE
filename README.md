@@ -1,3 +1,5 @@
+### Paper: [基于注意力机制的无人机对地多目标跟踪](https://kns.cnki.net/kcms2/article/abstract?v=3uoqIhG8C467SBiOvrai6TdxYiSzCnOE4DdIn5fHRa7whAmAecdzvbd2WKIE-2X2HBlqkSLSMZRD2SExakQplwFdS5Ym__W9LQ02EitVgzE%3d&uniplatform=NZKPT)
+
 ***What's new:***  
 add JDE with Swin-S and Swin-B  
 update cfg files and train.py  
